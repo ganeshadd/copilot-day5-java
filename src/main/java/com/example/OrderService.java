@@ -1,6 +1,9 @@
 package com.example;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.concurrent.CompletableFuture;
 import java.util.List;
 
 /*
@@ -14,20 +17,19 @@ public class OrderService {
     }
 
     public static int calculateTotal(List<Integer> items) {
-        List<Integer> unique = new ArrayList<>();
+        java.util.Map<Integer, Integer> freq = new java.util.HashMap<>();
+        for (int val : items) {
+            freq.put(val, freq.getOrDefault(val, 0) + 1);
+        }
         int total = 0;
-        for (int i = 0; i < items.size(); i++) {
-            int val = items.get(i);
-            if (!unique.contains(val)) {
-                int count = 0;
-                for (int j = 0; j < items.size(); j++) {
-                    if (items.get(j) == val)
-                        count++;
-                }
-                total += val * count;
-                unique.add(val);
-            }
+        for (java.util.Map.Entry<Integer, Integer> entry : freq.entrySet()) {
+            total += entry.getKey() * entry.getValue();
         }
         return total;
+    }
+
+    // Async streaming implementation using CompletableFuture
+    public static CompletableFuture<Integer> calculateTotalAsync(List<Integer> items) {
+        return CompletableFuture.supplyAsync(() -> calculateTotal(items));
     }
 }
