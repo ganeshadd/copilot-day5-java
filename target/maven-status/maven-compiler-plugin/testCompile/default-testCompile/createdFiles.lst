@@ -1,1 +1,4 @@
-com\example\OrderServiceTest.class
+com/example/OrderServiceTest.class
+com/example/PrimeCheckerTest.class
+com/example/QueryBuilderTest.class
+com/example/PrimeCheckerComparisonTest.class
