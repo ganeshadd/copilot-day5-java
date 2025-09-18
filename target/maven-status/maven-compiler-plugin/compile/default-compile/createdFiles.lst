@@ -1,1 +1,10 @@
+com/example/PrimeCheckerHighPerf.class
+com/example/QueryBuilder$QueryResult.class
+com/example/PrimeCheckerCached.class
+com/example/PrimeCheckerSimple.class
+com/example/PrimeCheckerSieve.class
+com/example/SieveDebug.class
+com/example/PrimeCheckerSegmented.class
+com/example/PrimeChecker.class
 com/example/OrderService.class
+com/example/QueryBuilder.class
