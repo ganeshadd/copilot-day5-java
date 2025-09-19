@@ -1,11 +1,12 @@
 package com.example;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
- * Smelly implementation: O(n^2) approach that computes total by counting occurrences
- * (inefficient for large lists). Purpose: ask Copilot to refactor to O(n).
+ * Optimized implementation: O(n) approach using HashMap to count occurrences efficiently.
+ * Refactored from inefficient O(n^2) nested loop approach.
  */
 public class OrderService {
     public static void main(String[] args) {
@@ -14,20 +15,20 @@ public class OrderService {
     }
 
     public static int calculateTotal(List<Integer> items) {
-        List<Integer> unique = new ArrayList<>();
-        int total = 0;
-        for (int i = 0; i < items.size(); i++) {
-            int val = items.get(i);
-            if (!unique.contains(val)) {
-                int count = 0;
-                for (int j = 0; j < items.size(); j++) {
-                    if (items.get(j) == val)
-                        count++;
-                }
-                total += val * count;
-                unique.add(val);
-            }
+        Map<Integer, Integer> counts = new HashMap<>();
+
+        // Count occurrences of each item in O(n)
+        for (int item : items) {
+            counts.put(item, counts.getOrDefault(item, 0) + 1);
         }
+
+        // Calculate total in O(unique items)
+        int total = 0;
+        for (Map.Entry<Integer, Integer> entry : counts.entrySet()) {
+            total += entry.getKey() * entry.getValue();
+        }
+
         return total;
     }
 }
+
